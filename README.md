@@ -71,4 +71,4 @@ print(parse_from_string("age > 20 and (height < 5 or weight > 70) or (age < 20 a
 # Output: {'bool': {'should': [{'bool': {'must': [{'bool': {'must': {'range': {'age': {'gt': 20}}}}}, {'bool': {'should': [{'bool': {'must': {'range': {'height': {'lt': 5}}}}}, {'bool': {'must': {'range': {'weight': {'gt': 70}}}}}]}}]}}, {'bool': {'must': [{'bool': {'must': {'range': {'age': {'lt': 20}}}}}, {'bool': {'must': {'range': {'weight': {'gt': 70}}}}}]}}]}}
 ```
 
-Please look into official docs for more information - link-here/
+Please look into official docs for more information - https://searchx.github.io/neurosfl/
