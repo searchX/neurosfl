@@ -89,7 +89,7 @@ See more usage and sample codes in package documentations and tests
    :maxdepth: 2
    :caption: Contents:
 
-
+   neurosfl
 
 Indices and tables
 ==================
