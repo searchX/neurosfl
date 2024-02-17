@@ -1,0 +1,30 @@
+[project]
+name = "NeuroSFL"
+version = "0.1.0"
+description = "NeuroSFL (Neuro SQL based Filtering Language) is the SQL based filtering language that can be used to generate dynamic filters for different backends, currently only supporting Elasticsearch!"
+authors = [
+    {name = "Harishankar Kumar", email = "hari01584@gmail.com"},
+]
+dependencies = [
+    "ply>=3.11",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+sphinx = [
+    "furo>=2024.1.29",
+]
+
+[tool.pdm.scripts]
+test = "python -m unittest"
+docs = "sh -c 'make -C docs/ clean html && make -C docs/ html'"

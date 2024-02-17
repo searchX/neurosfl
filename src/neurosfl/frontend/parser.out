@@ -1,0 +1,255 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NOT_OPERATOR
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> START_WHERE expression
+Rule 2     start -> expression
+Rule 3     expression -> expression OR_OPERATOR expression
+Rule 4     expression -> expression AND_OPERATOR expression
+Rule 5     expression -> FIELD_NAME COMPARISON_OPERATOR number_value
+Rule 6     expression -> FIELD_NAME COMPARISON_OPERATOR string_value
+Rule 7     number_value -> NUMBER_LITERAL
+Rule 8     string_value -> STRING_LITERAL
+Rule 9     expression -> LEFT_PARENTHESES expression RIGHT_PARENTHESES
+
+Terminals, with rules where they appear
+
+AND_OPERATOR         : 4
+COMPARISON_OPERATOR  : 5 6
+FIELD_NAME           : 5 6
+LEFT_PARENTHESES     : 9
+NOT_OPERATOR         : 
+NUMBER_LITERAL       : 7
+OR_OPERATOR          : 3
+RIGHT_PARENTHESES    : 9
+START_WHERE          : 1
+STRING_LITERAL       : 8
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 2 3 3 4 4 9
+number_value         : 5
+start                : 0
+string_value         : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . START_WHERE expression
+    (2) start -> . expression
+    (3) expression -> . expression OR_OPERATOR expression
+    (4) expression -> . expression AND_OPERATOR expression
+    (5) expression -> . FIELD_NAME COMPARISON_OPERATOR number_value
+    (6) expression -> . FIELD_NAME COMPARISON_OPERATOR string_value
+    (9) expression -> . LEFT_PARENTHESES expression RIGHT_PARENTHESES
+
+    START_WHERE     shift and go to state 2
+    FIELD_NAME      shift and go to state 4
+    LEFT_PARENTHESES shift and go to state 5
+
+    start                          shift and go to state 1
+    expression                     shift and go to state 3
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> START_WHERE . expression
+    (3) expression -> . expression OR_OPERATOR expression
+    (4) expression -> . expression AND_OPERATOR expression
+    (5) expression -> . FIELD_NAME COMPARISON_OPERATOR number_value
+    (6) expression -> . FIELD_NAME COMPARISON_OPERATOR string_value
+    (9) expression -> . LEFT_PARENTHESES expression RIGHT_PARENTHESES
+
+    FIELD_NAME      shift and go to state 4
+    LEFT_PARENTHESES shift and go to state 5
+
+    expression                     shift and go to state 6
+
+state 3
+
+    (2) start -> expression .
+    (3) expression -> expression . OR_OPERATOR expression
+    (4) expression -> expression . AND_OPERATOR expression
+
+    $end            reduce using rule 2 (start -> expression .)
+    OR_OPERATOR     shift and go to state 7
+    AND_OPERATOR    shift and go to state 8
+
+
+state 4
+
+    (5) expression -> FIELD_NAME . COMPARISON_OPERATOR number_value
+    (6) expression -> FIELD_NAME . COMPARISON_OPERATOR string_value
+
+    COMPARISON_OPERATOR shift and go to state 9
+
+
+state 5
+
+    (9) expression -> LEFT_PARENTHESES . expression RIGHT_PARENTHESES
+    (3) expression -> . expression OR_OPERATOR expression
+    (4) expression -> . expression AND_OPERATOR expression
+    (5) expression -> . FIELD_NAME COMPARISON_OPERATOR number_value
+    (6) expression -> . FIELD_NAME COMPARISON_OPERATOR string_value
+    (9) expression -> . LEFT_PARENTHESES expression RIGHT_PARENTHESES
+
+    FIELD_NAME      shift and go to state 4
+    LEFT_PARENTHESES shift and go to state 5
+
+    expression                     shift and go to state 10
+
+state 6
+
+    (1) start -> START_WHERE expression .
+    (3) expression -> expression . OR_OPERATOR expression
+    (4) expression -> expression . AND_OPERATOR expression
+
+    $end            reduce using rule 1 (start -> START_WHERE expression .)
+    OR_OPERATOR     shift and go to state 7
+    AND_OPERATOR    shift and go to state 8
+
+
+state 7
+
+    (3) expression -> expression OR_OPERATOR . expression
+    (3) expression -> . expression OR_OPERATOR expression
+    (4) expression -> . expression AND_OPERATOR expression
+    (5) expression -> . FIELD_NAME COMPARISON_OPERATOR number_value
+    (6) expression -> . FIELD_NAME COMPARISON_OPERATOR string_value
+    (9) expression -> . LEFT_PARENTHESES expression RIGHT_PARENTHESES
+
+    FIELD_NAME      shift and go to state 4
+    LEFT_PARENTHESES shift and go to state 5
+
+    expression                     shift and go to state 11
+
+state 8
+
+    (4) expression -> expression AND_OPERATOR . expression
+    (3) expression -> . expression OR_OPERATOR expression
+    (4) expression -> . expression AND_OPERATOR expression
+    (5) expression -> . FIELD_NAME COMPARISON_OPERATOR number_value
+    (6) expression -> . FIELD_NAME COMPARISON_OPERATOR string_value
+    (9) expression -> . LEFT_PARENTHESES expression RIGHT_PARENTHESES
+
+    FIELD_NAME      shift and go to state 4
+    LEFT_PARENTHESES shift and go to state 5
+
+    expression                     shift and go to state 12
+
+state 9
+
+    (5) expression -> FIELD_NAME COMPARISON_OPERATOR . number_value
+    (6) expression -> FIELD_NAME COMPARISON_OPERATOR . string_value
+    (7) number_value -> . NUMBER_LITERAL
+    (8) string_value -> . STRING_LITERAL
+
+    NUMBER_LITERAL  shift and go to state 15
+    STRING_LITERAL  shift and go to state 16
+
+    number_value                   shift and go to state 13
+    string_value                   shift and go to state 14
+
+state 10
+
+    (9) expression -> LEFT_PARENTHESES expression . RIGHT_PARENTHESES
+    (3) expression -> expression . OR_OPERATOR expression
+    (4) expression -> expression . AND_OPERATOR expression
+
+    RIGHT_PARENTHESES shift and go to state 17
+    OR_OPERATOR     shift and go to state 7
+    AND_OPERATOR    shift and go to state 8
+
+
+state 11
+
+    (3) expression -> expression OR_OPERATOR expression .
+    (3) expression -> expression . OR_OPERATOR expression
+    (4) expression -> expression . AND_OPERATOR expression
+
+    OR_OPERATOR     reduce using rule 3 (expression -> expression OR_OPERATOR expression .)
+    $end            reduce using rule 3 (expression -> expression OR_OPERATOR expression .)
+    RIGHT_PARENTHESES reduce using rule 3 (expression -> expression OR_OPERATOR expression .)
+    AND_OPERATOR    shift and go to state 8
+
+  ! AND_OPERATOR    [ reduce using rule 3 (expression -> expression OR_OPERATOR expression .) ]
+  ! OR_OPERATOR     [ shift and go to state 7 ]
+
+
+state 12
+
+    (4) expression -> expression AND_OPERATOR expression .
+    (3) expression -> expression . OR_OPERATOR expression
+    (4) expression -> expression . AND_OPERATOR expression
+
+    OR_OPERATOR     reduce using rule 4 (expression -> expression AND_OPERATOR expression .)
+    AND_OPERATOR    reduce using rule 4 (expression -> expression AND_OPERATOR expression .)
+    $end            reduce using rule 4 (expression -> expression AND_OPERATOR expression .)
+    RIGHT_PARENTHESES reduce using rule 4 (expression -> expression AND_OPERATOR expression .)
+
+  ! OR_OPERATOR     [ shift and go to state 7 ]
+  ! AND_OPERATOR    [ shift and go to state 8 ]
+
+
+state 13
+
+    (5) expression -> FIELD_NAME COMPARISON_OPERATOR number_value .
+
+    OR_OPERATOR     reduce using rule 5 (expression -> FIELD_NAME COMPARISON_OPERATOR number_value .)
+    AND_OPERATOR    reduce using rule 5 (expression -> FIELD_NAME COMPARISON_OPERATOR number_value .)
+    $end            reduce using rule 5 (expression -> FIELD_NAME COMPARISON_OPERATOR number_value .)
+    RIGHT_PARENTHESES reduce using rule 5 (expression -> FIELD_NAME COMPARISON_OPERATOR number_value .)
+
+
+state 14
+
+    (6) expression -> FIELD_NAME COMPARISON_OPERATOR string_value .
+
+    OR_OPERATOR     reduce using rule 6 (expression -> FIELD_NAME COMPARISON_OPERATOR string_value .)
+    AND_OPERATOR    reduce using rule 6 (expression -> FIELD_NAME COMPARISON_OPERATOR string_value .)
+    $end            reduce using rule 6 (expression -> FIELD_NAME COMPARISON_OPERATOR string_value .)
+    RIGHT_PARENTHESES reduce using rule 6 (expression -> FIELD_NAME COMPARISON_OPERATOR string_value .)
+
+
+state 15
+
+    (7) number_value -> NUMBER_LITERAL .
+
+    OR_OPERATOR     reduce using rule 7 (number_value -> NUMBER_LITERAL .)
+    AND_OPERATOR    reduce using rule 7 (number_value -> NUMBER_LITERAL .)
+    $end            reduce using rule 7 (number_value -> NUMBER_LITERAL .)
+    RIGHT_PARENTHESES reduce using rule 7 (number_value -> NUMBER_LITERAL .)
+
+
+state 16
+
+    (8) string_value -> STRING_LITERAL .
+
+    OR_OPERATOR     reduce using rule 8 (string_value -> STRING_LITERAL .)
+    AND_OPERATOR    reduce using rule 8 (string_value -> STRING_LITERAL .)
+    $end            reduce using rule 8 (string_value -> STRING_LITERAL .)
+    RIGHT_PARENTHESES reduce using rule 8 (string_value -> STRING_LITERAL .)
+
+
+state 17
+
+    (9) expression -> LEFT_PARENTHESES expression RIGHT_PARENTHESES .
+
+    OR_OPERATOR     reduce using rule 9 (expression -> LEFT_PARENTHESES expression RIGHT_PARENTHESES .)
+    AND_OPERATOR    reduce using rule 9 (expression -> LEFT_PARENTHESES expression RIGHT_PARENTHESES .)
+    $end            reduce using rule 9 (expression -> LEFT_PARENTHESES expression RIGHT_PARENTHESES .)
+    RIGHT_PARENTHESES reduce using rule 9 (expression -> LEFT_PARENTHESES expression RIGHT_PARENTHESES .)
+
